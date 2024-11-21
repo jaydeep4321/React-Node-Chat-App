@@ -11,9 +11,10 @@ import {
 } from '@mui/material';
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from 'phosphor-react';
 import React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import { ChatList } from '../../data';
 import { SimpleBarStyle } from '../../components/Scrollbar';
+import { CustomScroll } from 'react-custom-scroll';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -45,12 +46,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         width: '100%',
         borderRadius: 1,
-        backgroundColor: '#fff',
+        backgroundColor:
+          theme.palette.mode === 'light'
+            ? '#fff'
+            : theme.palette.background.default,
       }}
       p={2}
     >
@@ -92,7 +97,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: 20,
-  backgroundColor: alpha(theme.palette.background.paper, 1),
+  backgroundColor: alpha(theme.palette.background.default, 1),
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: '100%',
@@ -118,12 +123,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 const Chats = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         position: 'relative',
         width: 320,
-        backgroundColor: '#F8FAFF',
+        backgroundColor:
+          theme.palette.mode === 'light'
+            ? '#F8FAFF'
+            : theme.palette.background.paper,
         boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)',
       }}
     >
